@@ -20,7 +20,7 @@ spec:
       image: 279425659819.dkr.ecr.eu-central-1.amazonaws.com/oron_todo
       namespace: prod
       name: todo-prod
-      tag: 1.0.20
+      tag: 1.0.21
       port: 5000
     domain:
       url: prod.oronflux.tk
