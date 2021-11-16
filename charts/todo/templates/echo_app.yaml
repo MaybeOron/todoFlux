@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.app.name | default "app" }}
+  namespace: {{ .Values.app.namespace | default "default" }}
+  labels:
+      app: {{ .Values.app.name | default "app" }}
+spec:
+  replicas: {{ .Values.app.replicas | default 2 }}
+  selector:
+    matchLabels:
+      app: {{ .Values.app.name | default "app" }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.app.name | default "app" }}
+    spec:
+      containers:
+      - name: {{ .Values.app.name | default "app" }}
+        image: {{ .Values.app.image }}:{{ .Values.app.tag | default "latest" }}
+        env:
+        - name: MONGODBURL
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secret-url
+              key: MONGODBURL
+        ports:
+        - containerPort: {{ .Values.app.port | default 5000 }}
+        resources:
+          limits:
+            memory: {{ .Values.app.resources.limits.memory | default "200Mi" }}
+            cpu: {{ .Values.app.resources.limits.cpu | default "200m" }}
+          requests:
+            memory: {{ .Values.app.resources.requests.memory | default "200Mi" }}
+            cpu: {{ .Values.app.resources.requests.cpu | default "200m" }}
+        # envFrom:
+        # - configMapRef:
+        #     name: {{ .Values.app.name | default "app" }}-configmap
