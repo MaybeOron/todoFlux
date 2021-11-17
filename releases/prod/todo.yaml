@@ -23,5 +23,5 @@ spec:
       tag: 1.0.20
       port: 5000
     domain:
-      url: prod.oronflux.tk
+      url: prod.oronport.tk
     replicaCount: 1
