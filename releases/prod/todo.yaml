@@ -17,7 +17,8 @@ spec:
     ref: master
   values:
     app:
-      image: 279425659819.dkr.ecr.eu-central-1.amazonaws.com/oron_todo
+      # image: 279425659819.dkr.ecr.eu-central-1.amazonaws.com/oron_todo
+      image: 006262944085.dkr.ecr.eu-central-1.amazonaws.com/oron_todo
       namespace: prod
       name: todo-prod
       tag: 1.0.23
